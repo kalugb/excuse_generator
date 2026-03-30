@@ -14,7 +14,7 @@ from get_dataset import get_formatted_dataset
 
 # change the login secret code to your own
 from huggingface_hub import login
-login("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")
+login("<your_secret_code>")
 
 # define using models
 model_name = "google/gemma-3-1b-it"
