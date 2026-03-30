@@ -12,14 +12,16 @@ from peft import get_peft_model, LoraConfig
 
 from get_dataset import get_formatted_dataset
 
-# # change the login secret code to your own
-# from huggingface_hub import login
-# login("<your_secret_token>")
+# change the login secret code to your own
+from huggingface_hub import login
+login("<your_own_login_code> :)")
 
+# define using models
 model_name = "google/gemma-3-270m-it"
 tokenizer = AutoTokenizer.from_pretrained(model_name)
 model = AutoModelForCausalLM.from_pretrained(model_name, device_map="auto")
 
+# lora config to make training lighter and faster
 lora_config = LoraConfig(
     r=4,    
     target_modules=["q_proj", "v_proj", "o_proj"],
@@ -38,22 +40,27 @@ tokenizer_params = {
     "truncation": True
 }
 
+# get train and val data
 data = get_formatted_dataset()
 total_data = len(data)
 total_train_data = int(total_data * 0.9)
 train_data = data[:total_train_data]
 val_data = data[total_train_data:]
 
+# tokenize and dataloader 
 inputs = tokenizer(train_data, **tokenizer_params)
 input_ids = inputs["input_ids"].to(device)
 attention_mask = inputs["attention_mask"].to(device)
-
 dataset = TensorDataset(input_ids, attention_mask, input_ids)
 dataloader = DataLoader(dataset, batch_size=16, shuffle=True)
 
-optim = torch.optim.AdamW(model.parameters(), lr=2e-4, weight_decay=0.01)
+# parameters
+lr = 2e-4
+weight_decay = 0.01
+optim = torch.optim.AdamW(model.parameters(), lr=lr, weight_decay=weight_decay)
 epochs = 3
 
+# train
 model.train()
 for epoch in range(epochs):
     print(f"At epoch {epoch + 1}")
@@ -75,6 +82,7 @@ for epoch in range(epochs):
         
     print(f"Epoch loss: {total_loss / len(dataloader)}")
     
+# validation
 model.eval()
 val_enc = tokenizer(val_data, **tokenizer_params)
 val_input_ids = val_enc["input_ids"].to(device)
@@ -97,6 +105,7 @@ with torch.inference_mode():
     val_loss = total_loss / len(val_dataloader)
     print(f"Validation loss: {val_loss}")
         
+# save model
 model_config_path = os.path.join(os.getcwd(), "model_config")
 model.save_pretrained(model_config_path)
 tokenizer.save_pretrained(model_config_path)
