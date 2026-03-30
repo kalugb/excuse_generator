@@ -1,3 +1,11 @@
 *.pth
 
 *.pt
+
+model_config/
+
+venv/
+
+__pycache__
+
+.sixth/
