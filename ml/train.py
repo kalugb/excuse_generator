@@ -12,8 +12,9 @@ from peft import get_peft_model, LoraConfig
 
 from get_dataset import get_formatted_dataset
 
-from huggingface_hub import login
-login("<your_secret_token>")
+# # change the login secret code to your own
+# from huggingface_hub import login
+# login("<your_secret_token>")
 
 model_name = "google/gemma-3-270m-it"
 tokenizer = AutoTokenizer.from_pretrained(model_name)
