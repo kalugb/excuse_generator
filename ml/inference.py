@@ -6,50 +6,66 @@ import os
 import sys
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
-model, tokenizer = None, None
-
 # load model
 def load_model():
     from transformers import AutoTokenizer, AutoModelForCausalLM
     model_config_path = os.path.join(os.getcwd(), "model_config")
     tokenizer = AutoTokenizer.from_pretrained(model_config_path)
-    model = AutoModelForCausalLM.from_pretrained(model_config_path, device_map="auto")
+    model = AutoModelForCausalLM.from_pretrained(model_config_path, device_map=None).to(device)
     
-    return tokenizer, model
+    return model, tokenizer
+
+model, tokenizer = load_model()
 
 # inference
 def get_excuse(input_text: str, context: str, seriousness: bool, length: str):
     # format input 
-    context = context + " excused needed: "
-    text = "input: " + context + input_text + "\nserious: " + str(seriousness) + "\nlength: " + length
+    text = (
+        f"input: {input_text}\n"
+        f"context: {context}\n"
+        f"serious: {str(seriousness)}\n"
+        f"length: {length}\n"
+    )
     
-    tokenizer, model = load_model()
-    tokenizer_params = {"padding": True, "truncation": True, "return_tensors": "pt", "batch_size": 16}
+    tokenizer_params = {"padding": True, "truncation": True, "return_tensors": "pt"}
     
     # encoding 
     enc = tokenizer(text, **tokenizer_params)
     input_ids = enc["input_ids"].to(device)
     attention_mask = enc["attention_mask"].to(device)
     
-    # this is needed i guess
-    tokenizer.pad_token = tokenizer.eos_token
-    model.config.pad_token_id = model.config.eos_token_id
-    
     full_output = model.generate(
         input_ids=input_ids, 
         attention_mask=attention_mask, 
-        max_new_tokens=50
+        max_new_tokens=40,
+        do_sample=True,
+        temperature=0.9,
+        top_p=0.9,
+        pad_token_id=tokenizer.pad_token_id
     )
     
     # format output into readable string
     full_output = tokenizer.decode(full_output[0], skip_special_tokens=True)
-    output = full_output.splitlines()[3]
-    output = output.split("output: ")[1]
+    full_output = full_output.splitlines()
+    
+    output = ""
+    for out in full_output:
+        if "output" in out:
+            output = out.split("output: ")[1]
+            break
     
     return output
 
 if __name__ == "__main__":
-    output = get_excuse("I was late for my work", "Corporate", False, "short")
+    output_num = 3
     
-    print(output)
+    input_text = "Late for government meeting"
+    context = "government"
+    seriousness = True
+    length = "long"
+    
+    for i in range(output_num):
+        output = get_excuse(input_text, context, seriousness, length)
+        print(f"Excuse {i + 1}: {output}")
+        
     

@@ -14,19 +14,19 @@ from get_dataset import get_formatted_dataset
 
 # change the login secret code to your own
 from huggingface_hub import login
-login("<your_own_login_code> :)")
+login("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")
 
 # define using models
-model_name = "google/gemma-3-270m-it"
+model_name = "google/gemma-3-1b-it"
 tokenizer = AutoTokenizer.from_pretrained(model_name)
 model = AutoModelForCausalLM.from_pretrained(model_name, device_map="auto")
 
 # lora config to make training lighter and faster
 lora_config = LoraConfig(
-    r=4,    
+    r=8,    
     target_modules=["q_proj", "v_proj", "o_proj"],
     lora_alpha=16,
-    lora_dropout=0.1,
+    lora_dropout=0.2,
     bias="none",
     task_type="CAUSAL_LM"
 )
@@ -34,7 +34,7 @@ lora_config = LoraConfig(
 model = get_peft_model(model, lora_config).to(device)
 
 tokenizer_params = {
-    "max_length": 32,
+    "max_length": 64,
     "padding": True,
     "return_tensors": "pt",
     "truncation": True
@@ -44,7 +44,7 @@ tokenizer_params = {
 data = get_formatted_dataset()
 total_data = len(data)
 total_train_data = int(total_data * 0.9)
-train_data = data[:total_train_data]
+train_data = data[:total_train_data] 
 val_data = data[total_train_data:]
 
 # tokenize and dataloader 
@@ -55,10 +55,10 @@ dataset = TensorDataset(input_ids, attention_mask, input_ids)
 dataloader = DataLoader(dataset, batch_size=16, shuffle=True)
 
 # parameters
-lr = 2e-4
-weight_decay = 0.01
+lr = 5e-4
+weight_decay = 0.05
 optim = torch.optim.AdamW(model.parameters(), lr=lr, weight_decay=weight_decay)
-epochs = 3
+epochs = 5
 
 # train
 model.train()

@@ -11,3 +11,6 @@ __pycache__
 .sixth/
 
 notes.txt
+
+test.py
+gpu_check.py
