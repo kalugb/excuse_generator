@@ -14,3 +14,12 @@ notes.txt
 
 test.py
 gpu_check.py
+
+# later remove or do something with it
+ml/train.py
+
+*.json
+
+misc/
+
+node_modules/
