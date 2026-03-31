@@ -1,16 +1,22 @@
-import express from "express"
-import path from "path"
-import { fileURLToPath } from "url"
+import express from "express";
+import path from "path";
+import { fileURLToPath } from "url";
+import nunjucks from "nunjucks";
 
-const __filename = fileURLToPath(import.meta.url)
-const __dirname = path.dirname(__filename)
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
-const app = express()
-app.use(express.json())
+const app = express();
 app.use(express.static(path.join(__dirname, "public")));
 
+nunjucks.configure(path.join(__dirname, "views"), {
+  autoescape: true,
+  express: app,
+  watch: true,
+});
+
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "public","index.html"))
+  res.render("index.html", { title: "Home Page" });
 });
 
 app.listen(3000, () => {

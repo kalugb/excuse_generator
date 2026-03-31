@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>{{ title|default("Default Title") }}</title>
+    <link href="/output.css" rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <h1 class="flex justify-center items-center">A site</h1>
+    </header>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer>
+        <p>Footer</p>
+    </footer>
+</body>
+</html>
