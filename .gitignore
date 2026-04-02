@@ -23,3 +23,6 @@ ml/train.py
 misc/
 
 node_modules/
+
+# this just for script
+*.bat

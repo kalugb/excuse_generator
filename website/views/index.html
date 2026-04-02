@@ -1,7 +1,133 @@
 {% extends "layout.html" %}
 
 {% block content %}
-    <h2>Welcome to the Page</h2>
-    <p>This is just for testing</p>
+    <div class="div-center-col p-5 w-full lg:w-[65%] m-auto mt-10 gap-15">
+        <div class="text-center font-bold text-4xl">
+            <h1>Needing an excuse for something?</h1>
+        </div>
+
+        <form action="/" method="POST">
+            <div class="div-center-col gap-5 w-full">
+                <h3 class="text-2xl" id="top-text">Enter your situation: </h3>
+
+                <div class="div-center-col w-full gap-7" id="pre-generate">
+                    <div class="w-full">
+                        <input type="text" name="situation" id="situation" placeholder="Eg: I'm late for maths class"
+                            class="p-2 pl-10 pr-10 border rounded-full w-full required">
+                    </div>
+                    
+                    <div class="selection-div">
+                        <p class="font-bold text-[20px]">Context: </p>
+                        
+                        <div class="div-center-row gap-5">
+                            <p class="context-menu">School</p>
+                            <p class="context-menu">Corporate</p>
+                            <p class="context-menu">Government</p>
+                            <p class="context-menu selected">General</p>
+                        </div>
+                    </div>
+
+                    <div class="selection-div">
+                        <p class="font-bold text-[20px]">Seriousness: </p>
+
+                        <div class="div-center-row gap-5">
+                            <p class="context-menu selected">Serious</p>
+                            <p class="context-menu">Unserious</p>
+                        </div>
+                    </div>
+
+                    <div class="selection-div">
+                        <p class="font-bold text-[20px]">Length: </p>
+
+                        <div class="div-center-row gap-5">
+                            <p class="context-menu selected">Short</p>
+                            <p class="context-menu">Long</p>
+                        </div>
+                    </div>
+
+                    <div class="div-center-row justify-start w-full">
+                        <p>*Selection of the above improves the quality of the excuse</p>
+                    </div>
+
+                    <div id="generate-btn">
+                        <button type="button" class="p-2 pl-5 pr-5 border rounded-full hover:cursor-pointer bg-forth text-white">
+                            Generate Excuse
+                        </button>
+                    </div>
+                </div>
+
+                <div id="in-generate" class="">
+                    <div>
+                        <p>Generating excuses... Please wait...</p>
+                    </div>
+                </div>
+
+                <div id="post-generate" class="">
+                    <div>
+                        <p>Excuse 1: </p>
+                        <p>Excuse 2: </p>
+                        <p>Excuse 3: </p>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div class="div-center-col items-start mt-10 p-3 w-full lg:w-[65%] m-auto gap-10">
+        <div>
+            <p class="font-bold text-3xl">Excuse generator</p>
+        </div>
+        <div class="div-center-col items-start gap-3">
+            <p>
+                Welcome to the "Excuse Generator" website, one of the internet's most sophisticated digital alibi. 
+                We are a collective of rogue algorithms and caffeinated humans who realized that while 
+                "The dog ate my homework" was a classic, it lacks the 21st-century flair of 
+                "A localized electromagnetic pulse temporarily desynchronized my internal clock." 
+            </p>
+            <p>
+                Our mission is simple: to provide you with the high-octane, tech-infused justifications 
+                you need to navigate a world that demands too much of your time. Whether you're avoiding a Friday afternoon 
+                "sync" that definitely could have been an email or explaining why you haven't responded to a text from 2024, 
+                our AI-driven excuse engine is here to help. 
+            </p>
+            <p>
+                We believe that honesty is the best policy—but when honesty involves admitting you spent four hours 
+                watching sourdough fermentation videos instead of finishing that spreadsheet, 
+                a strategically generated "server migration error" is a very close second. We're not saying we're heroes, 
+                but we are saying you're welcome.
+            </p>
+        </div>
+
+        <div>
+            <p class="font-bold text-3xl">How to Use</p>
+        </div>
+        <div class="div-center-col items-start gap-3">
+            <p>
+                Even though we had throughout believed that this website is as easy as possible to use, but we are kind enough to teach
+                you how to use it. So here's the steps to use this website:
+            </p>
+            <p>
+                1. Enter your situation in the <b>text box</b> provided. Describe your situation you're facing right now. It can be as short or
+                   as long as you wish. We can't guarantee that long descriptions will work well, same for short descriptions, but make
+                   sure it is clear enough.
+            </p>
+            <p>
+                2. Select the <b>context</b> of the situation. The context can be <b>school, corporate, government or general</b>. The <b>general</b> context 
+                   is the default setting, and it assume it is not the listed contexts.
+            </p>
+            <p>
+                3. Select the <b>seriousness</b> of the situation. The seriousness can be <b>serious or unserious</b>. Serious selection, well gives 
+                   serious and real-life excuses. Unserious selection, well, see it for yourself :)
+            </p>
+            <p>
+                4. Select the <b>length</b> of the excuse. <b>Short length</b> will generate <b>1 sentence</b> of excuse. <b>Long length</b> will generate <b>2-3
+                   sentences</b> of excuse. See how verbose you wanna go, depends on you.
+            </p>
+            <p>
+                5. Click the <b>Generate Excuse</b> button and let the magic happen. Remember, to always review the excuse before you actually
+                   use it. Getting scolded, fired or even sued is not a good idea.
+            </p>
+        </div>
+    </div>
 {% endblock %}
 

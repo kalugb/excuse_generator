@@ -6,17 +6,36 @@
     <link href="/output.css" rel="stylesheet">
 </head>
 
-<body>
+<body class="bg-primary font-display">
     <header>
-        <h1 class="flex justify-center items-center">A site</h1>
+        <nav class="flex justify-around items-center p-5 bg-tertiary text-white fixed top-0 left-0 right-0 z-50">
+            <h1 class="nav-text">Logo</h1>
+            <div class="relative group" id="dropdown">
+                <p class="nav-text" id="dropdown-text">Login ▾</p>
+
+                <!-- Dropdown menu -->
+                <div class="absolute left-1/2 -translate-x-1/2 mt-2 w-40 bg-white text-black rounded shadow-lg
+                            opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+                    <a href="#" class="block px-4 py-2 hover:bg-gray-100">Sign In</a>
+                    <a href="#" class="block px-4 py-2 hover:bg-gray-100">Register</a>
+                    <a href="#" class="block px-4 py-2 hover:bg-gray-100">Forgot Password</a>
+                </div>
+            </div>
+        </nav>
     </header>
 
-    <main>
+    <main class="pt-20">
         {% block content %}{% endblock %}
     </main>
 
-    <footer>
-        <p>Footer</p>
+    <footer class="flex justify-center items-center flex-col p-3 mt-5 bg-secondary gap-2.5">
+        <div>
+            <p>Copyright &copy; 2026 | All rights reserved</p>
+        </div>
+        <div>
+            <p>Contact: 0123456789 | This website is a website</p>
+        </div>
     </footer>
 </body>
+<script src="/layout.js"></script>
 </html>
