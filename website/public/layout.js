@@ -21,11 +21,6 @@ dropdown.addEventListener("mouseleave", () => {
     dropdownText.textContent = "Login ▾";
 })
 
-generateBtn.addEventListener("click", () => {
-    inGenerate.classList.toggle("hidden");
-    postGenerate.classList.toggle("hidden");
-})
-
 context.forEach((item) => {
     item.addEventListener("click", () => {
         context.forEach((item) => {
@@ -54,4 +49,11 @@ length.forEach((item) => {
         item.classList.add("selected");
         lengthSymbol = item.getAttribute("data-symbol");
     })
+})
+
+generateBtn.addEventListener("click", () => {
+    inGenerate.classList.toggle("hidden");
+    postGenerate.classList.toggle("hidden");
+
+    // do fetch here
 })

@@ -9,17 +9,9 @@
 <body class="bg-primary font-display">
     <header>
         <nav class="flex justify-around items-center p-5 bg-tertiary text-white fixed top-0 left-0 right-0 z-50">
-            <h1 class="nav-text">Logo</h1>
+            <h1 class="nav-text" onclick="location.href = '/'">Logo</h1>
             <div class="relative group" id="dropdown">
-                <p class="nav-text" id="dropdown-text">Login ▾</p>
-
-                <!-- Dropdown menu -->
-                <div class="absolute left-1/2 -translate-x-1/2 mt-2 w-40 bg-white text-black rounded shadow-lg
-                            opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
-                    <a href="#" class="block px-4 py-2 hover:bg-gray-100">Sign In</a>
-                    <a href="#" class="block px-4 py-2 hover:bg-gray-100">Register</a>
-                    <a href="#" class="block px-4 py-2 hover:bg-gray-100">Forgot Password</a>
-                </div>
+                <p class="nav-text" id="dropdown-text" onclick="location.href = '/login'">Login ▾</p>
             </div>
         </nav>
     </header>
@@ -37,5 +29,4 @@
         </div>
     </footer>
 </body>
-<script src="/layout.js"></script>
 </html>

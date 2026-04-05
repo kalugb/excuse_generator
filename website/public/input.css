@@ -40,5 +40,14 @@
     .selection-div {
         @apply flex flex-col items-center w-full justify-start gap-5 sm:flex-row sm:gap-10;
     }
+
+    /* global components */
+    .global-btn {
+        @apply p-2 pl-5 pr-5 border rounded-full hover:cursor-pointer bg-forth text-white 
+            transition ease-in-out hover:scale-105;
+    }
+    .global-input {
+        @apply p-2 pl-10 pr-10 border rounded-full w-full;
+    }
 }
 
