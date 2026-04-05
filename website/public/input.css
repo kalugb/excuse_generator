@@ -31,7 +31,7 @@
     }
 
     /* For selection menu after textbox */
-    .context-menu {
+    .context-menu, .serious-menu, .length-menu {
         @apply p-2 pl-5 pr-5 border rounded-full hover:cursor-pointer;
     }
     .selected {
