@@ -1,0 +1,85 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    <div class="div-center-col w-full h-auto m-auto max-w-3xl px-5">
+        <div>
+            <p class="text-3xl">Welcome Back <b>{{ username }}</b></p>
+        </div>
+
+        <div class="div-center-row lg:gap-25 gap-5 w-full m-auto mt-5">
+            <div class="brief-info-container">
+                <p class="font-bold">Total Excuses Generated: </p>
+                <p>67</p>
+            </div>
+
+            <div class="brief-info-container">
+                <p class="font-bold">Last Excuses Generated: </p>
+                <p>Some excuses</p>
+            </div>
+        </div>
+
+        <div class="div-center-col gap-5 mt-10 w-full">
+            <div class="div-center-col">
+                <p class="font-bold text-2xl">Past results: </p>
+                <p>Showing only past 10 results</p>
+            </div>
+
+            <div class="div-center-col w-full">
+                <p>Excuse 1: </p>
+                <p>Excuse 2: </p>
+                <p>Excuse 3: </p>
+            </div>
+
+            <div>
+                <button class="global-btn">Show more</button>
+            </div>
+        </div>
+
+        <div class="div-center-col gap-5 mt-10 w-full">
+            <div>
+                <p class="font-bold text-2xl">Basic info: </p>
+            </div>
+
+            <div class="grid sm:grid-cols-2 sm:grid-rows-2 grid-rows-4 gap-8 w-full">
+                <div class="basic-info-container">
+                    <p class="font-bold text-2xl">Username: </p>
+                    <p>{{ username }}</p>
+
+                    <button class="global-btn mt-5">Change Username</button>
+                </div>
+
+                <div class="basic-info-container">
+                    <p class="font-bold text-2xl">Email: </p>
+                    <p>{{ email }}</p>
+
+                    <button class="global-btn mt-5">Change Email</button>
+                </div>
+
+                <div class="basic-info-container">
+                    <p class="font-bold text-2xl">Phone Number</p>
+                    <p>{{ phoneNumber }}</p>
+
+                    <button class="global-btn mt-5">Change Phone Number</button>
+                </div>
+
+                <div class="basic-info-container">
+                    <p class="font-bold text-2xl">Password: </p>
+                    <p>********</p>
+
+                    <button class="global-btn mt-5">Change Password</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="div-center-col mt-10 gap-5 border rounded-3xl p-5 w-full">
+            <div>
+                <p class="font-bold text-3xl text-center">Delete account</p>
+                <p>Remove all data related to this account, cannot be undone</p>
+            </div>
+
+            <div>
+                <button class="global-btn bg-red-500">Delete Account</button>
+            </div>
+        </div>
+    </div>
+{% endblock %}

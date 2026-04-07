@@ -41,6 +41,14 @@
         @apply flex flex-col items-center w-full justify-start gap-5 sm:flex-row sm:gap-10;
     }
 
+    /* For user */
+    .brief-info-container {
+        @apply flex flex-col justify-center items-center border p-10 gap-5 rounded-3xl w-full;
+    }
+    .basic-info-container {
+        @apply flex flex-col justify-center items-center gap-2 border rounded-3xl p-10;
+    }
+
     /* global components */
     .global-btn {
         @apply p-2 pl-5 pr-5 border rounded-full hover:cursor-pointer bg-forth text-white 
@@ -49,5 +57,6 @@
     .global-input {
         @apply p-2 pl-10 pr-10 border rounded-full w-full;
     }
+
 }
 

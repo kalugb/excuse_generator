@@ -1,31 +1,31 @@
 {% extends "layout.html" %}
 
 {% block content %}
-    <div class="flex gap-5 ml-5 mr-5">
+    <div class="flex -mt-3 -mb-5">
         <div class="hidden lg:flex w-2/5 h-auto border">
-            picture
+            <img src="/images/placeholder.png" alt="placeholder">
         </div>
 
-        <div class="div-center-row w-full lg:w-3/5 h-auto border min-h-dvh">
-            <div class="div-center-col p-15 gap-12 border rounded-3xl w-full max-w-xl">
+        <div class="div-center-row w-full lg:w-3/5 h-auto min-h-dvh">
+            <div class="div-center-col p-15 gap-12 border rounded-3xl w-full max-w-lg">
                 <div>
                     <p class="font-bold text-4xl text-center mb-2">Login</p>
                     <p class="">Access the full potential of making excuses</p>
                 </div>
 
                 <div>
-                    <form action="/auth" method="POST" class="div-center-col gap-5">
+                    <form action="#" method="POST" class="div-center-col gap-5">
                         <input type="text" name="username" id="username" placeholder="username"
                             class="global-input w-100" maxlength="50" required> 
                         <input type="password" name="password" id="password" placeholder="password"
                             class="global-input w-100" required> 
                         <p>Don't have an account? 
-                            <a href="#" class="text-forth hover:cursor-pointer hover:text-blue-700">
+                            <a href="/register" class="text-forth hover:cursor-pointer hover:text-blue-700">
                                 Register
                             </a>
                         </p>
 
-                        <button type="submit" class="global-btn w-50">Login</button>
+                        <button type="submit" class="global-btn w-50" onclick="location.href = '/user'">Login</button>
                     </form>
                 </div>
             </div>

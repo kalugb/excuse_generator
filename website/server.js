@@ -24,8 +24,20 @@ app.get("/login", (req, res) => {
     res.render("login.html")
 })
 
+app.get("/register", (req, res) => {
+    res.render("register.html")
+})
+
+app.get("/user", (req, res) => {
+    res.render("user.html", { username: "username", email: "email", phoneNumber: "phoneNumber" })
+})
+
 app.post("/auth", (req, res) => {
     const { username, password } = req.body;
+})
+
+app.post("/reg", (req, res) => {
+    const { username, email, password, phoneNum } = req.body
 })
 
 app.listen(3000, () => {
