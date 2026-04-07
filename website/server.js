@@ -16,6 +16,7 @@ nunjucks.configure(path.join(__dirname, "views"), {
     watch: true,
 });
 
+// app routes
 app.get("/", (req, res) => {
     res.render("index.html", { title: "Home Page" });
 });
@@ -32,6 +33,11 @@ app.get("/user", (req, res) => {
     res.render("user.html", { username: "username", email: "email", phoneNumber: "phoneNumber" })
 })
 
+app.get("/admin", (req, res) => {
+    res.render("admin.html")
+})
+
+// app post
 app.post("/auth", (req, res) => {
     const { username, password } = req.body;
 })
@@ -40,6 +46,8 @@ app.post("/reg", (req, res) => {
     const { username, email, password, phoneNum } = req.body
 })
 
+
+// listener
 app.listen(3000, () => {
     console.log("Server started at http://localhost:3000")
 })

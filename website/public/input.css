@@ -41,12 +41,27 @@
         @apply flex flex-col items-center w-full justify-start gap-5 sm:flex-row sm:gap-10;
     }
 
-    /* For user */
-    .brief-info-container {
-        @apply flex flex-col justify-center items-center border p-10 gap-5 rounded-3xl w-full;
+    /* For user/admin */
+    .section-text {
+        @apply font-bold text-3xl;
+    }
+    .sub-text {
+        @apply font-bold text-2xl;
     }
     .basic-info-container {
-        @apply flex flex-col justify-center items-center gap-2 border rounded-3xl p-10;
+        @apply flex flex-col justify-center items-center gap-5 border rounded-3xl p-10 w-full 
+            transition-all duration-300 ease-in-out hover:scale-105;
+    }
+
+    /* For user */
+    /* None */
+
+    /* For admin */
+    .admin-info-main-container {
+        @apply flex flex-col justify-center items-center mt-10 w-full gap-5;
+    }
+    .grid-content {
+        @apply border p-5 border-r-0 border-t-0 overflow-hidden break-all;
     }
 
     /* global components */
@@ -57,6 +72,12 @@
     .global-input {
         @apply p-2 pl-10 pr-10 border rounded-full w-full;
     }
+    .global-transition {
+        @apply transition-all hover:scale-105 ease-in-out duration-300;
+    }
+}
 
+@layer utilities {
+    
 }
 
