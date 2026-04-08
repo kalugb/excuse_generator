@@ -2,11 +2,13 @@
 
 {% block content %}
 <div class="div-center-col p-5 w-full lg:w-[50%] m-auto mt-10 gap-15">
-    <div class="text-center font-bold text-4xl">
+    <div class="text-center font-bold text-4xl
+        global-transition-properties global-pretransition delay-0">
         <h1>Needing an excuse for something?</h1>
     </div>
 
-    <div class="div-center-col gap-5 w-full">
+    <div class="div-center-col gap-5 w-full
+        global-transition-properties global-pretransition delay-50">
         <h3 class="text-2xl" id="top-text">Enter your situation: </h3>
 
         <div class="div-center-col w-full gap-7" id="pre-generate">
@@ -71,7 +73,8 @@
     </div>
 </div>
 
-<div class="div-center-col items-start mt-10 p-3 w-full lg:w-[65%] m-auto gap-10">
+<div class="div-center-col items-start mt-10 p-3 w-full lg:w-[65%] m-auto gap-10
+    global-transition-properties global-pretransition delay-100">
     <div>
         <p class="font-bold text-3xl">Excuse generator</p>
     </div>
@@ -102,37 +105,33 @@
     <div class="div-center-col items-start gap-3">
         <p>
             Even though we had throughout believed that this website is as easy as possible to use, but we are kind
-            enough to teach
-            you how to use it. So here's the steps to use this website:
+            enough to teach you how to use it. So here's the steps to use this website:
         </p>
         <p>
             1. Enter your situation in the <b>text box</b> provided. Describe your situation you're facing right now. It
-            can be as short or
-            as long as you wish. We can't guarantee that long descriptions will work well, same for short descriptions,
-            but make
-            sure it is clear enough.
+            can be as short or as long as you wish. We can't guarantee that long descriptions will work well, 
+            same for short descriptions, but make sure it is clear enough.
         </p>
         <p>
             2. Select the <b>context</b> of the situation. The context can be <b>school, corporate, government or
-                general</b>. The <b>general</b> context
-            is the default setting, and it assume it is not the listed contexts.
+            general</b>. The <b>general</b> context is the default setting, 
+            and it assume it is not the listed contexts.
         </p>
         <p>
             3. Select the <b>seriousness</b> of the situation. The seriousness can be <b>serious or unserious</b>.
-            Serious selection, well gives
-            serious and real-life excuses. Unserious selection, well, see it for yourself :)
+            Serious selection, well, gives serious and real-life excuses. 
+            Unserious selection, well, see it for yourself :)
         </p>
         <p>
             4. Select the <b>length</b> of the excuse. <b>Short length</b> will generate <b>1 sentence</b> of excuse.
-            <b>Long length</b> will generate <b>2-3
-                sentences</b> of excuse. See how verbose you wanna go, depends on you.
+            <b>Long length</b> will generate <b>2-3 sentences</b> of excuse. 
+            See how verbose you wanna go, depends on you.
         </p>
         <p>
             5. Click the <b>Generate Excuse</b> button and let the magic happen. Remember, to always review the excuse
-            before you actually
-            use it. Getting scolded, fired or even sued is not a good idea.
+            before you actually use it. Getting scolded, fired or even sued is not a good idea.
         </p>
     </div>
 </div>
-<script src="/layout.js"></script>
+<script src="/index.js"></script>
 {% endblock %}

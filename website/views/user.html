@@ -2,11 +2,12 @@
 
 {% block content %}
     <div class="div-center-col w-full m-auto max-w-5xl px-5">
-        <div class="mt-5">
+        <div class="mt-5 global-transition-properties global-pretransition delay-0">
             <p class="text-3xl">Welcome Back <b>{{ username }}</b></p>
         </div>
 
-        <div class="div-center-row lg:gap-25 gap-5 w-full m-auto mt-5">
+        <div class="div-center-row lg:gap-25 gap-5 w-full m-auto mt-5
+            global-transition-properties global-pretransition delay-50">
             <div class="basic-info-container">
                 <p class="font-bold">Total Excuses Generated: </p>
                 <p>67</p>
@@ -18,7 +19,8 @@
             </div>
         </div>
 
-        <div class="div-center-col gap-5 mt-10 w-full">
+        <div class="div-center-col gap-5 mt-10 w-full
+            global-transition-properties global-pretransition delay-100">
             <div class="div-center-col">
                 <p class="font-bold text-2xl">Past results: </p>
                 <p>Showing only past 3 results</p>
@@ -35,7 +37,8 @@
             </div>
         </div>
 
-        <div class="div-center-col gap-5 mt-10 w-full">
+        <div class="div-center-col gap-5 mt-10 w-full
+            global-transition-properties global-pretransition delay-150">
             <div>
                 <p class="font-bold text-2xl">Basic info: </p>
             </div>
@@ -71,7 +74,8 @@
             </div>
         </div>
 
-        <div class="div-center-col mt-10 gap-5 border rounded-3xl p-5 w-full global-transition">
+        <div class="div-center-col mt-10 gap-5 border rounded-3xl p-5 w-full global-transition-hover
+            global-transition-properties global-pretransition delay-200">
             <div>
                 <p class="font-bold text-3xl text-center">Delete account</p>
                 <p>Remove all data related to this account, cannot be undone</p>
@@ -82,4 +86,5 @@
             </div>
         </div>
     </div>
+    <script src="/user.js"></script>
 {% endblock %}

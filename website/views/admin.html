@@ -2,11 +2,13 @@
 
 {% block content %}
     <div class="div-center-col w-full m-auto max-w-5xl px-5">
-        <div class="admin-info-main-container mt-5">
+        <div class="admin-info-main-container mt-5
+            global-transition-properties global-pretransition delay-0">
             <p class="section-text">Admin dashboard</p>
         </div>
 
-        <div class="admin-info-main-container">
+        <div class="admin-info-main-container
+            global-transition-properties global-pretransition delay-100">
             <div>
                 <p class="section-text">Dashboard</p>
             </div>
@@ -34,13 +36,14 @@
             </div>
         </div>
 
-        <div class="admin-info-main-container overflow-x-auto">
+        <div class="admin-info-main-container overflow-x-auto
+            global-transition-properties global-pretransition delay-200">
             <div>
                 <p class="section-text">User List</p>
             </div>
 
             <div class="div-center-row gap-5">
-                <input type="text" placeholder="Search" class="global-input w-100">
+                <input type="text" placeholder="Search" class="global-input sm:w-100 w-75">
 
                 <button type="button" class="global-btn">Search</button>
             </div>
@@ -70,4 +73,5 @@
             </div>
         </div>
     </div>
+    <script src="/admin.js"></script>
 {% endblock %}

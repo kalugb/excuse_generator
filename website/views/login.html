@@ -2,11 +2,12 @@
 
 {% block content %}
     <div class="flex -mt-3 -mb-5">
-        <div class="hidden lg:flex w-2/5 h-auto border">
+        <div class="hidden lg:flex w-2/5 h-auto">
             <img src="/images/placeholder.png" alt="placeholder">
         </div>
 
-        <div class="div-center-row w-full lg:w-3/5 h-auto min-h-dvh">
+        <div class="div-center-row w-full lg:w-3/5 h-auto min-h-dvh global-transition-properties global-pretransition" 
+            id="input-container">
             <div class="div-center-col p-15 gap-12 border rounded-3xl w-full max-w-lg">
                 <div>
                     <p class="font-bold text-4xl text-center mb-2">Login</p>
@@ -16,9 +17,9 @@
                 <div>
                     <form action="#" method="POST" class="div-center-col gap-5">
                         <input type="text" name="username" id="username" placeholder="username"
-                            class="global-input w-100" maxlength="50" required> 
+                            class="global-input sm:w-100 w-75" maxlength="50" required> 
                         <input type="password" name="password" id="password" placeholder="password"
-                            class="global-input w-100" required> 
+                            class="global-input sm:w-100 w-75" required> 
                         <p>Don't have an account? 
                             <a href="/register" class="text-forth hover:cursor-pointer hover:text-blue-700">
                                 Register
@@ -31,4 +32,5 @@
             </div>
         </div>
     </div>
+    <script src="/loginRegister.js"></script>
 {% endblock %}

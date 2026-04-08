@@ -1,5 +1,10 @@
-const dropdown = document.getElementById("dropdown");
-const dropdownText = document.getElementById("dropdown-text");
+window.onload = () => {
+    const transitions = document.querySelectorAll(".global-pretransition");
+    
+    transitions.forEach(el => {
+        el.classList.remove("global-pretransition");
+    });
+};
 
 const generateBtn = document.getElementById("generate-btn");
 const btnContainer = document.getElementById("btn-container");
@@ -13,13 +18,6 @@ const selectedContext = document.querySelector(".context-menu.selected");
 const selectedSerious = document.querySelector(".serious-menu.selected");
 const selectedLength = document.querySelector(".length-menu.selected");
 let contextSymbol = "general", seriousSymbol = "serious", lengthSymbol = "short"
-
-dropdown.addEventListener("mouseenter", () => {
-    dropdownText.textContent = "Login ▴";
-})
-dropdown.addEventListener("mouseleave", () => {
-    dropdownText.textContent = "Login ▾";
-})
 
 context.forEach((item) => {
     item.addEventListener("click", () => {
