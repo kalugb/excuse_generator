@@ -7,6 +7,7 @@ import session from "express-session";
 
 import connectDB from "./db.js";
 import User from "./models/Users.js";
+import Excuses from "./models/Excuses.js";
 
 connectDB();
 
@@ -54,8 +55,33 @@ app.get("/user", async (req, res) => {
     }
 })
 
-app.get("/admin", (req, res) => {
-    res.render("admin.html")
+app.get("/admin", async (req, res) => {
+    const weekInMillis = 7 * 24 * 60 * 60 * 1000;
+
+    try {
+        const totalUsers = await User.aggregate([
+            { $group: { _id: null, count: { $sum: 1 } } }
+        ]);
+        const totalExcuses = await Excuses.aggregate([
+            { $group: { _id: null, count: { $sum: 1 } } }
+        ]);
+        const totalNewUsersWeekly = await User.aggregate([
+            { $match: { createdDate: { $gte: new Date(Date.now() - weekInMillis) } } },
+            { $group: { _id: null, count: { $sum: 1 } } }
+        ]);
+        const totalNewExcusesWeekly = await Excuses.aggregate([
+            { $match: { createdDate: { $gte: new Date(Date.now() - weekInMillis) } } },
+            { $group: { _id: null, count: { $sum: 1 } } }
+        ])
+        const allUsers = await User.find();
+
+        res.render("admin.html", { totalUsers: totalUsers[0]?.count || 0, totalExcuses: totalExcuses[0]?.count || 0,
+            totalNewUsersWeekly: totalNewUsersWeekly[0]?.count || 0, totalNewExcusesWeekly: totalNewExcusesWeekly[0]?.count || 0,
+            allUsers: allUsers
+        });
+    } catch (err) {
+        res.status(500).send(err.message);
+    }
 })
 
 // app post

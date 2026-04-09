@@ -5,5 +5,3 @@ window.onload = () => {
         el.classList.remove("global-pretransition");
     });
 };
-
-console.log("test");
