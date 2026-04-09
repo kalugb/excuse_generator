@@ -19,6 +19,8 @@ const selectedSerious = document.querySelector(".serious-menu.selected");
 const selectedLength = document.querySelector(".length-menu.selected");
 let contextSymbol = "general", seriousSymbol = "serious", lengthSymbol = "short"
 
+const situationInput = document.getElementById("situation");
+
 context.forEach((item) => {
     item.addEventListener("click", () => {
         context.forEach((item) => {
@@ -49,9 +51,49 @@ length.forEach((item) => {
     })
 })
 
-generateBtn.addEventListener("click", () => {
-    inGenerate.classList.toggle("hidden");
-    postGenerate.classList.toggle("hidden");
+generateBtn.addEventListener("click", async () => {
+    // reset
+    if (!postGenerate.classList.contains("hidden")) {
+        postGenerate.classList.add("hidden");
+    }
+    const paragraphs = document.querySelectorAll("#post-generate p");
+    paragraphs.forEach((p, index) => {
+        p.textContent = `Excuse ${index + 1}: `;
+    })
 
-    // do fetch here
-})
+    input = situationInput.value;
+    if (input === "") {
+        throw new Error("Please enter a situation");
+    } 
+
+    const payload = {
+        situation: input,
+        context: contextSymbol,
+        seriousness: seriousSymbol,
+        length: lengthSymbol,
+    };
+
+    inGenerate.classList.toggle("hidden");
+    generateBtn.classList.toggle("hidden");
+
+    try {
+        const res = await fetch("/generateExcuse", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload),
+        });
+        const result = await res.json();
+        console.log(result)
+
+        postGenerate.classList.remove("hidden");
+        inGenerate.classList.toggle("hidden");
+        generateBtn.classList.toggle("hidden");
+
+        result.forEach((text, index) => {
+            paragraphs[index].textContent += text;
+        });
+
+    } catch (err) {
+        console.error(err);
+    }
+});

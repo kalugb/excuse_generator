@@ -106,6 +106,8 @@ with torch.inference_mode():
     print(f"Validation loss: {val_loss}")
         
 # save model
+merged_model = model.merge_and_unload()
+
 model_config_path = os.path.join(os.getcwd(), "model_config")
-model.save_pretrained(model_config_path)
+merged_model.save_pretrained(model_config_path)
 tokenizer.save_pretrained(model_config_path)

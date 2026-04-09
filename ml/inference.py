@@ -1,17 +1,21 @@
 import torch
 device = "cuda" if torch.cuda.is_available() else "cpu"
-print(f"Using device: {device}")
 
 import os
 import sys
+import json
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+
+from pathlib import Path
 
 # load model
 def load_model():
     from transformers import AutoTokenizer, AutoModelForCausalLM
-    model_config_path = os.path.join(os.getcwd(), "model_config")
-    tokenizer = AutoTokenizer.from_pretrained(model_config_path)
-    model = AutoModelForCausalLM.from_pretrained(model_config_path, device_map=None).to(device)
+    
+    script_dir = Path(__file__).parent.absolute()
+    model_config_path = str((script_dir.parent / "model_config").as_posix())
+    tokenizer = AutoTokenizer.from_pretrained(model_config_path, local_files_only=True)
+    model = AutoModelForCausalLM.from_pretrained(model_config_path, local_files_only=True).to(device)
     
     return model, tokenizer
 
@@ -37,11 +41,12 @@ def get_excuse(input_text: str, context: str, seriousness: bool, length: str):
     full_output = model.generate(
         input_ids=input_ids, 
         attention_mask=attention_mask, 
-        max_new_tokens=40,
+        max_new_tokens=60,
         do_sample=True,
-        temperature=0.9,
-        top_p=0.9,
-        pad_token_id=tokenizer.pad_token_id
+        temperature=0.7,
+        top_p=0.95,
+        pad_token_id=tokenizer.pad_token_id,
+        repetition_penalty=1.1
     )
     
     # format output into readable string
@@ -57,15 +62,15 @@ def get_excuse(input_text: str, context: str, seriousness: bool, length: str):
     return output
 
 if __name__ == "__main__":
-    output_num = 3
+    data = json.load(sys.stdin)
     
-    input_text = "Late for government meeting"
-    context = "government"
-    seriousness = True
-    length = "long"
+    output_list = []
     
-    for i in range(output_num):
-        output = get_excuse(input_text, context, seriousness, length)
-        print(f"Excuse {i + 1}: {output}")
+    for _ in range(3):
+        output = get_excuse(data["situation"], data["context"], data["seriousness"], data["length"])
+        output_list.append(output)
+        
+    print(json.dumps(output_list))
+
         
     
