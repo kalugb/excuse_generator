@@ -5,6 +5,11 @@ import nunjucks from "nunjucks";
 import { spawn } from "child_process";
 import session from "express-session";
 
+import connectDB from "./db.js";
+import User from "./models/Users.js";
+
+connectDB();
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
@@ -13,7 +18,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.json());
 app.use(session({
-    secret: "secret",
+    secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: true
 }))
@@ -37,8 +42,16 @@ app.get("/register", (req, res) => {
     res.render("register.html")
 })
 
-app.get("/user", (req, res) => {
-    res.render("user.html", { username: "username", email: "email", phoneNumber: "phoneNumber" })
+app.get("/user", async (req, res) => {
+    // placeholder
+    try {
+        const user = await User.findOne({ username: "admin" });
+        req.session.user = user._id.toString();
+        res.render("user.html", { username: user.username, email: user.email, phoneNumber: user.phoneNum });
+    } catch (err) {
+        console.log(err);
+        res.status(500).send(err);
+    }
 })
 
 app.get("/admin", (req, res) => {
@@ -54,7 +67,6 @@ app.post("/reg", (req, res) => {
     const { username, email, password, phoneNum } = req.body
 })
 
-// python shell test
 app.post("/generateExcuse", (req, res) => {
     const scriptPath = path.join(__dirname, "../ml", "inference.py");
     const python = spawn("python", [scriptPath]);
